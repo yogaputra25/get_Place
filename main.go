@@ -5,6 +5,7 @@ import (
 	"Get_place/controller"
 	"Get_place/repository"
 	"Get_place/service"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -28,4 +29,6 @@ func main() {
 	}
 
 	r.Run()
+	cek := placeRepository.AllKecamatan()
+	fmt.Println(cek)
 }
