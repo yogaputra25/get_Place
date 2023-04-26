@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"gorm.io/gorm/schema"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -22,7 +23,7 @@ func SetupDatabaseConnection() *gorm.DB {
 	dbName := os.Getenv("DB_NAME")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", dbUser, dbPass, dbHost, dbName)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{NamingStrategy: schema.NamingStrategy{SingularTable: true}})
 	if err != nil {
 		panic("Failed to create a connection to database")
 	}

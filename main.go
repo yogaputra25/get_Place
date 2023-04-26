@@ -11,10 +11,13 @@ import (
 )
 
 var (
-	db              *gorm.DB = config.SetupDatabaseConnection()
-	placeRepository          = repository.NewPlaceConnection(db)
-	placeService             = service.NewPlaceService(placeRepository)
-	placeController          = controller.NewPlaceController(placeService)
+	db                  *gorm.DB = config.SetupDatabaseConnection()
+	placeRepository              = repository.NewPlaceConnection(db)
+	placeService                 = service.NewPlaceService(placeRepository)
+	placeController              = controller.NewPlaceController(placeService)
+	UserPlaceRepository          = repository.NewUserPlaceConnection(db)
+	UserPlaceService             = service.NewUserPlaceService(UserPlaceRepository)
+	userPlaceController          = controller.NewUserPlaceController(UserPlaceService)
 )
 
 func main() {
@@ -22,9 +25,16 @@ func main() {
 	defer config.CloseDatabaseConnection(db)
 	r := gin.Default()
 
-	bookRoutes := r.Group("api/place")
+	placeRoutes := r.Group("api/place")
 	{
-		bookRoutes.GET("/", placeController.All)
+		placeRoutes.GET("/kecamatan", placeController.All)
+		placeRoutes.GET("/provinsi", placeController.AllProvinsi)
+
+	}
+
+	userPlace := r.Group("api/userplace")
+	{
+		userPlace.POST("/user", userPlaceController.Insert)
 
 	}
 

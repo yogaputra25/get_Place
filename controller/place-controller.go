@@ -10,6 +10,7 @@ import (
 
 type PlaceController interface {
 	All(context *gin.Context)
+	AllProvinsi(context *gin.Context)
 }
 
 type placeController struct {
@@ -22,6 +23,11 @@ func NewPlaceController(placeService service.PlaceService) *placeController {
 
 func (p placeController) All(context *gin.Context) {
 	var place []entity.Kota = p.placeService.All()
+	res := helper.BuildResponse(true, "OK", place)
+	context.JSON(http.StatusOK, res)
+}
+func (p placeController) AllProvinsi(context *gin.Context) {
+	var place []entity.Province = p.placeService.AllProvinsi()
 	res := helper.BuildResponse(true, "OK", place)
 	context.JSON(http.StatusOK, res)
 }

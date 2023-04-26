@@ -7,6 +7,7 @@ import (
 
 type PlaceService interface {
 	All() []entity.Kota
+	AllProvinsi() []entity.Province
 }
 
 type placeService struct {
@@ -19,4 +20,8 @@ func NewPlaceService(placeRepository repository.PlaceRepository) *placeService {
 
 func (p placeService) All() []entity.Kota {
 	return p.placeRepository.AllKecamatan()
+}
+
+func (p placeService) AllProvinsi() []entity.Province {
+	return p.placeRepository.AllProvinsi()
 }

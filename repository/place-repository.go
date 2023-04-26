@@ -7,6 +7,13 @@ import (
 
 type PlaceRepository interface {
 	AllKecamatan() []entity.Kota
+	AllProvinsi() []entity.Province
+}
+
+func (p placeConnection) AllProvinsi() []entity.Province {
+	var Provinsi []entity.Province
+	p.connection.Find(&Provinsi)
+	return Provinsi
 }
 
 func (p placeConnection) AllKecamatan() []entity.Kota {
