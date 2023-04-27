@@ -7,6 +7,7 @@ import (
 
 type UserPlaceRepository interface {
 	InsertPlace(b entity.Userplace) entity.Userplace
+	Delete(b entity.Userplace)
 }
 
 type userPlaceConnection struct {
@@ -21,4 +22,8 @@ func (db userPlaceConnection) InsertPlace(b entity.Userplace) entity.Userplace {
 	db.connection.Save(&b)
 	db.connection.Find(&b)
 	return b
+}
+
+func (db userPlaceConnection) Delete(b entity.Userplace) {
+	db.connection.Delete(&b)
 }

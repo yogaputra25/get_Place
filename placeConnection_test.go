@@ -3,10 +3,9 @@ package main
 import (
 	"Get_place/config"
 	"Get_place/controller"
-	"Get_place/dto"
+	"Get_place/entity"
 	"Get_place/repository"
 	"Get_place/service"
-	"fmt"
 	"testing"
 )
 
@@ -20,6 +19,7 @@ func TestAllKecamatan(t *testing.T) {
 	//fmt.Println(placeRepository.AllProvinsi())
 	//fmt.Println(placeRepository.AllKecamatan())
 	//fmt.Println(placeService.All())
-	fmt.Println(UserPlaceService.InsertUser(dto.UserPlaceDTO{Name: "komsd", Kecamatan: 1, Provinsi: 2}))
+	//fmt.Println(UserPlaceService.InsertUser(dto.UserPlaceDTO{Name: "komsd", Kecamatan: 1, Provinsi: 2}))
+	UserPlaceService.Delete(entity.Userplace{ID: 2})
 
 }

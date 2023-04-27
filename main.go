@@ -35,6 +35,7 @@ func main() {
 	userPlace := r.Group("api/userplace")
 	{
 		userPlace.POST("/user", userPlaceController.Insert)
+		userPlace.DELETE("/user/:id/delete", userPlaceController.Delete)
 
 	}
 

@@ -8,6 +8,7 @@ import (
 
 type UserPlaceService interface {
 	InsertUser(d dto.UserPlaceDTO) entity.Userplace
+	Delete(b entity.Userplace)
 }
 
 type userPlaceService struct {
@@ -23,4 +24,7 @@ func (b userPlaceService) InsertUser(d dto.UserPlaceDTO) entity.Userplace {
 
 	return b.userPlaceRepository.InsertPlace(userPlace)
 
+}
+func (service *userPlaceService) Delete(b entity.Userplace) {
+	service.userPlaceRepository.Delete(b)
 }
