@@ -5,3 +5,8 @@ type UserPlaceDTO struct {
 	Kecamatan uint64 `json:"kecamatan"`
 	Provinsi  uint64 `json:"provinsi"`
 }
+type UserPlaceUpdateDTO struct {
+	Name      string `json:"name"`
+	Kecamatan uint64 `json:"kecamatan"`
+	Provinsi  uint64 `json:"provinsi"`
+}

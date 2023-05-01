@@ -34,8 +34,10 @@ func main() {
 
 	userPlace := r.Group("api/userplace")
 	{
+		userPlace.GET("/user", userPlaceController.Get)
 		userPlace.POST("/user", userPlaceController.Insert)
-		userPlace.DELETE("/user/:id/delete", userPlaceController.Delete)
+		userPlace.DELETE("/user/:id/place", userPlaceController.Delete)
+		userPlace.PUT("/user/:id/place", userPlaceController.Update)
 
 	}
 

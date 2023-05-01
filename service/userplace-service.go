@@ -9,6 +9,8 @@ import (
 type UserPlaceService interface {
 	InsertUser(d dto.UserPlaceDTO) entity.Userplace
 	Delete(b entity.Userplace)
+	Update(b dto.UserPlaceUpdateDTO, id uint64) entity.Userplace
+	Get() []entity.Getalluserplace
 }
 
 type userPlaceService struct {
@@ -23,6 +25,18 @@ func (b userPlaceService) InsertUser(d dto.UserPlaceDTO) entity.Userplace {
 	userPlace := entity.Userplace{Name: d.Name, Kecamatan: d.Kecamatan, Provinsi: d.Provinsi}
 
 	return b.userPlaceRepository.InsertPlace(userPlace)
+
+}
+
+func (b userPlaceService) Get() []entity.Getalluserplace {
+
+	return b.userPlaceRepository.Get()
+
+}
+func (b userPlaceService) Update(d dto.UserPlaceUpdateDTO, id uint64) entity.Userplace {
+	userPlace := entity.Userplace{Name: d.Name, Kecamatan: d.Kecamatan, Provinsi: d.Provinsi}
+
+	return b.userPlaceRepository.Update(userPlace, id)
 
 }
 func (service *userPlaceService) Delete(b entity.Userplace) {
